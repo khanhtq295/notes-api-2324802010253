@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Báo cáo Bài 1 - Hello Cloud</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 20px auto; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f4f4f4; }
+    </style>
+</head>
+<body>
+    <h1>Báo cáo Bài 1: Trải nghiệm Cloud Computing</h1>
+    
+    <h2>1. Bảng đo lường và so sánh</h2>
+    <table>
+        <tr>
+            <th>Tiêu chí</th>
+            <th>Máy cá nhân</th>
+            <th>Codespace</th>
+        </tr>
+        <tr>
+            <td>Thời gian từ lúc bắt đầu đến khi chạy được node -v</td>
+            <td>[Điền thời gian cài đặt NodeJS trên máy bạn, vd: 15 phút]</td>
+            <td>~ 45 giây</td>
+        </tr>
+        <tr>
+            <td>Số CPU, RAM (từ API)</td>
+            <td>[Điền cấu hình máy bạn, vd: 8 CPUs, 16GB RAM]</td>
+            <td>2 CPUs, 8GB RAM (hoặc 4 CPUs, 16GB)</td>
+        </tr>
+        <tr>
+            <td>Hệ điều hành</td>
+            <td>[Windows 11 / Linux / macOS]</td>
+            <td>Linux (Ubuntu)</td>
+        </tr>
+        <tr>
+            <td>Cách truy cập từ thiết bị khác</td>
+            <td>Cần cấu hình NAT port forwarding trên router, tìm public IP hoặc dùng ngrok. Khá phức tạp.</td>
+            <td>Chỉ cần chuyển Port Visibility sang Public và truy cập qua URL được cấp sẵn.</td>
+        </tr>
+        <tr>
+            <td>Chi phí, đo bằng gì</td>
+            <td>Trả tiền mua phần cứng một lần, trả tiền điện, khấu hao. Đo bằng KWh.</td>
+            <td>Đo bằng số "Core-hours" (giờ sử dụng CPU) và "Storage GB-months" trong Settings -> Billing.</td>
+        </tr>
+    </table>
+
+    <h2>2. Đối chiếu 5 đặc tính NIST qua thực hành</h2>
+    <ul>
+        <li><strong>Tự phục vụ theo yêu cầu:</strong> Tự khởi tạo được Codespace chỉ bằng vài cú click chuột mà không cần gửi ticket nhờ IT admin cấp phát server.</li>
+        <li><strong>Truy cập mạng rộng:</strong> API có thể được gọi và xem trực tiếp từ điện thoại thông minh thông qua Internet sau khi mở Public port.</li>
+        <li><strong>Gộp tài nguyên:</strong> Container của mình được cấp phát chung từ cụm server vật lý khổng lồ của GitHub.</li>
+        <li><strong>Co giãn nhanh:</strong> Có thể tạo hoặc hủy máy ảo chỉ trong hơn 1 phút. Đổi cấu hình (từ 2-core sang 4-core) rất nhanh.</li>
+        <li><strong>Dịch vụ đo lường được:</strong> Thời gian chạy máy ảo được GitHub đo đếm chính xác qua chỉ số Core-hours (như việc tự động tắt sau 30 phút idle để tiết kiệm).</li>
+    </ul>
+</body>
+</html>
