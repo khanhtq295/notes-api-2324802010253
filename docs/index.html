@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Báo Cáo Thực Hành Điện Toán Đám Mây - Trần Quốc Khánh</title>
+    <title>Báo Cáo Thực Hành: Ảo hóa, Container & Mô phỏng Trung tâm Dữ liệu - NhómD</title>
     <style>
         :root {
             --primary-color: #2563eb;
@@ -110,7 +110,7 @@
 <body>
 
     <div class="container">
-        <h1>Báo Cáo Thực Hành: Cloud Computing & Virtualization</h1>
+        <h1>Báo Cáo Thực Hành: Ảo hóa, Container & Mô phỏng Trung tâm Dữ liệu</h1>
 
         <div class="student-info">
             <h3>Thông tin sinh viên</h3>
@@ -119,56 +119,6 @@
             <p><strong>Lớp/Học phần:</strong> Công nghệ thông tin - Trường Đại học Thủ Dầu Một</p>
             <p><strong>GitHub Repository:</strong> <a href="https://github.com/khanhtq295/notes-api-2324802010253" target="_blank">notes-api-2324802010253</a></p>
         </div>
-
-        <!-- PHẦN BÀI 1 -->
-        <h2>Phần 1: Trải nghiệm Cloud Computing & 5 đặc tính NIST</h2>
-        
-        <h3>1.1. Bảng đo lường và so sánh</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Tiêu chí</th>
-                    <th>Máy cá nhân</th>
-                    <th>Codespace</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Thời gian cài đặt & chạy</strong></td>
-                    <td>Tự cài đặt NodeJS thủ công (khoảng 15-20 phút)</td>
-                    <td>~ 45 giây (tự động cấu hình môi trường)</td>
-                </tr>
-                <tr>
-                    <td><strong>Cấu hình phần cứng (API)</strong></td>
-                    <td>Cấu hình máy cá nhân thực tế</td>
-                    <td>2 CPUs, 8GB RAM</td>
-                </tr>
-                <tr>
-                    <td><strong>Hệ điều hành</strong></td>
-                    <td>Windows / macOS / Linux</td>
-                    <td>Linux (Ubuntu)</td>
-                </tr>
-                <tr>
-                    <td><strong>Truy cập mạng ngoại vi</strong></td>
-                    <td>Cần cấu hình NAT port forwarding, dùng ngrok (phức tạp)</td>
-                    <td>Chuyển Port Visibility sang Public, truy cập qua URL sẵn có</td>
-                </tr>
-                <tr>
-                    <td><strong>Đo lường chi phí</strong></td>
-                    <td>Điện năng tiêu thụ (KWh), khấu hao phần cứng</td>
-                    <td>Core-hours (giờ CPU) và Storage GB-months</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h3>1.2. Đối chiếu 5 đặc tính NIST</h3>
-        <ul>
-            <li><strong>Tự phục vụ theo yêu cầu (On-demand self-service):</strong> Khởi tạo môi trường Codespace ngay lập tức qua giao diện web mà không cần thông qua quản trị viên hệ thống.</li>
-            <li><strong>Truy cập mạng rộng (Broad network access):</strong> API dịch vụ sau khi cấu hình Public port có thể truy cập từ mọi thiết bị qua Internet.</li>
-            <li><strong>Gộp tài nguyên (Resource pooling):</strong> Tài nguyên tính toán được cấp phát động từ cụm máy chủ phần cứng ảo hóa lớn của GitHub.</li>
-            <li><strong>Co giãn nhanh (Rapid elasticity):</strong> Dễ dàng thay đổi cấu hình phần cứng hoặc hủy/tạo lại môi trường trong thời gian ngắn.</li>
-            <li><strong>Dịch vụ đo lường được (Measured service):</strong> Hệ thống tự động theo dõi thời gian sử dụng qua Core-hours và tự ngắt kết nối khi idle để tiết kiệm hạn mức.</li>
-        </ul>
 
         <!-- PHẦN BÀI 2 -->
         <h2>Phần 2: Ảo hóa, Container & Mô phỏng Trung tâm Dữ liệu</h2>
@@ -261,6 +211,7 @@
             <h3>Câu hỏi 3: Ý nghĩa của các cảnh báo (WARN) xuất hiện trong mô phỏng là gì? Có làm sai lệch kết quả mô phỏng không?</h3>
             <p><strong>Trả lời:</strong> Các dòng cảnh báo <span class="code-inline">Vm destroyed on Host...</span> xuất hiện do máy ảo chuyển sang trạng thái rảnh (idle) trong lúc chờ xử lý hàng đợi dưới cơ chế phân bổ tài nguyên, khiến hệ thống tự động thu hồi tài nguyên. Cảnh báo này <strong>hoàn toàn không làm sai lệch kết quả</strong> thời gian hoàn thành cuối cùng, mà phản ánh chính xác cơ chế tự động quản lý vòng đời tài nguyên của điện toán đám mây.</p>
         </div>
+
     </div>
 </body>
 </html>
