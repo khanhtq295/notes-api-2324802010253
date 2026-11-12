@@ -2,58 +2,265 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Báo cáo Bài 1 - Hello Cloud</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo Cáo Thực Hành Điện Toán Đám Mây - Trần Quốc Khánh</title>
     <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 20px auto; }
-        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-        th { background-color: #f4f4f4; }
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --border-color: #e2e8f0;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        h1 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 12px;
+            margin-top: 0;
+            font-size: 24px;
+        }
+        h2 {
+            color: var(--secondary-color);
+            margin-top: 35px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+            font-size: 20px;
+        }
+        h3 {
+            color: #334155;
+            font-size: 16px;
+        }
+        .student-info {
+            background: #eff6ff;
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 30px;
+        }
+        .student-info p {
+            margin: 6px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            text-align: left;
+        }
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .qa-box {
+            background: #f8fafc;
+            padding: 20px;
+            border-left: 4px solid #3b82f6;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            border-left-width: 4px;
+        }
+        .qa-box h3 {
+            margin-top: 0;
+            color: var(--secondary-color);
+        }
+        .code-inline {
+            background: #e2e8f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
     </style>
 </head>
 <body>
-    <h1>Báo cáo Bài 1: Trải nghiệm Cloud Computing</h1>
-    
-    <h2>1. Bảng đo lường và so sánh</h2>
-    <table>
-        <tr>
-            <th>Tiêu chí</th>
-            <th>Máy cá nhân</th>
-            <th>Codespace</th>
-        </tr>
-        <tr>
-            <td>Thời gian từ lúc bắt đầu đến khi chạy được node -v</td>
-            <td>[Điền thời gian cài đặt NodeJS trên máy bạn, vd: 15 phút]</td>
-            <td>~ 45 giây</td>
-        </tr>
-        <tr>
-            <td>Số CPU, RAM (từ API)</td>
-            <td>[Điền cấu hình máy bạn, vd: 8 CPUs, 16GB RAM]</td>
-            <td>2 CPUs, 8GB RAM (hoặc 4 CPUs, 16GB)</td>
-        </tr>
-        <tr>
-            <td>Hệ điều hành</td>
-            <td>[Windows 11 / Linux / macOS]</td>
-            <td>Linux (Ubuntu)</td>
-        </tr>
-        <tr>
-            <td>Cách truy cập từ thiết bị khác</td>
-            <td>Cần cấu hình NAT port forwarding trên router, tìm public IP hoặc dùng ngrok. Khá phức tạp.</td>
-            <td>Chỉ cần chuyển Port Visibility sang Public và truy cập qua URL được cấp sẵn.</td>
-        </tr>
-        <tr>
-            <td>Chi phí, đo bằng gì</td>
-            <td>Trả tiền mua phần cứng một lần, trả tiền điện, khấu hao. Đo bằng KWh.</td>
-            <td>Đo bằng số "Core-hours" (giờ sử dụng CPU) và "Storage GB-months" trong Settings -> Billing.</td>
-        </tr>
-    </table>
 
-    <h2>2. Đối chiếu 5 đặc tính NIST qua thực hành</h2>
-    <ul>
-        <li><strong>Tự phục vụ theo yêu cầu:</strong> Tự khởi tạo được Codespace chỉ bằng vài cú click chuột mà không cần gửi ticket nhờ IT admin cấp phát server.</li>
-        <li><strong>Truy cập mạng rộng:</strong> API có thể được gọi và xem trực tiếp từ điện thoại thông minh thông qua Internet sau khi mở Public port.</li>
-        <li><strong>Gộp tài nguyên:</strong> Container của mình được cấp phát chung từ cụm server vật lý khổng lồ của GitHub.</li>
-        <li><strong>Co giãn nhanh:</strong> Có thể tạo hoặc hủy máy ảo chỉ trong hơn 1 phút. Đổi cấu hình (từ 2-core sang 4-core) rất nhanh.</li>
-        <li><strong>Dịch vụ đo lường được:</strong> Thời gian chạy máy ảo được GitHub đo đếm chính xác qua chỉ số Core-hours (như việc tự động tắt sau 30 phút idle để tiết kiệm).</li>
-    </ul>
+    <div class="container">
+        <h1>Báo Cáo Thực Hành: Cloud Computing & Virtualization</h1>
+
+        <div class="student-info">
+            <h3>Thông tin sinh viên</h3>
+            <p><strong>Họ và tên:</strong> Trần Quốc Khánh</p>
+            <p><strong>Mã sinh viên:</strong> 2324802010253</p>
+            <p><strong>Lớp/Học phần:</strong> Công nghệ thông tin - Trường Đại học Thủ Dầu Một</p>
+            <p><strong>GitHub Repository:</strong> <a href="https://github.com/khanhtq295/notes-api-2324802010253" target="_blank">notes-api-2324802010253</a></p>
+        </div>
+
+        <!-- PHẦN BÀI 1 -->
+        <h2>Phần 1: Trải nghiệm Cloud Computing & 5 đặc tính NIST</h2>
+        
+        <h3>1.1. Bảng đo lường và so sánh</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tiêu chí</th>
+                    <th>Máy cá nhân</th>
+                    <th>Codespace</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Thời gian cài đặt & chạy</strong></td>
+                    <td>Tự cài đặt NodeJS thủ công (khoảng 15-20 phút)</td>
+                    <td>~ 45 giây (tự động cấu hình môi trường)</td>
+                </tr>
+                <tr>
+                    <td><strong>Cấu hình phần cứng (API)</strong></td>
+                    <td>Cấu hình máy cá nhân thực tế</td>
+                    <td>2 CPUs, 8GB RAM</td>
+                </tr>
+                <tr>
+                    <td><strong>Hệ điều hành</strong></td>
+                    <td>Windows / macOS / Linux</td>
+                    <td>Linux (Ubuntu)</td>
+                </tr>
+                <tr>
+                    <td><strong>Truy cập mạng ngoại vi</strong></td>
+                    <td>Cần cấu hình NAT port forwarding, dùng ngrok (phức tạp)</td>
+                    <td>Chuyển Port Visibility sang Public, truy cập qua URL sẵn có</td>
+                </tr>
+                <tr>
+                    <td><strong>Đo lường chi phí</strong></td>
+                    <td>Điện năng tiêu thụ (KWh), khấu hao phần cứng</td>
+                    <td>Core-hours (giờ CPU) và Storage GB-months</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>1.2. Đối chiếu 5 đặc tính NIST</h3>
+        <ul>
+            <li><strong>Tự phục vụ theo yêu cầu (On-demand self-service):</strong> Khởi tạo môi trường Codespace ngay lập tức qua giao diện web mà không cần thông qua quản trị viên hệ thống.</li>
+            <li><strong>Truy cập mạng rộng (Broad network access):</strong> API dịch vụ sau khi cấu hình Public port có thể truy cập từ mọi thiết bị qua Internet.</li>
+            <li><strong>Gộp tài nguyên (Resource pooling):</strong> Tài nguyên tính toán được cấp phát động từ cụm máy chủ phần cứng ảo hóa lớn của GitHub.</li>
+            <li><strong>Co giãn nhanh (Rapid elasticity):</strong> Dễ dàng thay đổi cấu hình phần cứng hoặc hủy/tạo lại môi trường trong thời gian ngắn.</li>
+            <li><strong>Dịch vụ đo lường được (Measured service):</strong> Hệ thống tự động theo dõi thời gian sử dụng qua Core-hours và tự ngắt kết nối khi idle để tiết kiệm hạn mức.</li>
+        </ul>
+
+        <!-- PHẦN BÀI 2 -->
+        <h2>Phần 2: Ảo hóa, Container & Mô phỏng Trung tâm Dữ liệu</h2>
+
+        <h3>2.1. So sánh Máy ảo (Codespace) và Container (notes2)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tiêu chí</th>
+                    <th>Codespace (Máy ảo)</th>
+                    <th>Container (notes2)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Thời gian khởi động</strong></td>
+                    <td>Vài phút</td>
+                    <td><span class="code-inline">0.386 giây</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Kích thước tài nguyên</strong></td>
+                    <td>Hạn mức theo gói dịch vụ (15 GB-tháng)</td>
+                    <td><span class="code-inline">63.3 MB</span> (Disk Usage ~251 MB)</td>
+                </tr>
+                <tr>
+                    <td><strong>Nhân hệ điều hành</strong></td>
+                    <td>Hệ điều hành độc lập (Linux Kernel)</td>
+                    <td>Dùng chung nhân OS với máy chủ vật lý</td>
+                </tr>
+                <tr>
+                    <td><strong>Mức độ cô lập</strong></td>
+                    <td>Cô lập toàn bộ ở tầng phần cứng ảo hóa</td>
+                    <td>Cô lập ở mức tiến trình hệ điều hành (Namespace/Cgroups)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>2.2. Thí nghiệm Mô phỏng Trung tâm Dữ liệu (CloudSim Plus)</h3>
+        <p>Kết quả thu được qua các kịch bản thay đổi thông số mô phỏng:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Lần</th>
+                    <th>Thay đổi kịch bản</th>
+                    <th>Thời điểm hoàn thành cuối (giây mô phỏng)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>0</strong></td>
+                    <td>Giữ nguyên (Mặc định)</td>
+                    <td>20.22 giây</td>
+                </tr>
+                <tr>
+                    <td><strong>1</strong></td>
+                    <td>Nhân đôi VMS (<span class="code-inline">VMS = 4</span>)</td>
+                    <td>20.1 giây (Giới hạn phần cứng Host Cores = 8)</td>
+                </tr>
+                <tr>
+                    <td><strong>2</strong></td>
+                    <td>Nhân đôi CLOUDLETS (<span class="code-inline">CLOUDLETS = 8</span>)</td>
+                    <td>40.1 giây</td>
+                </tr>
+                <tr>
+                    <td><strong>3</strong></td>
+                    <td>Đổi bộ lập lịch sang <span class="code-inline">SpaceShared</span></td>
+                    <td>20.1 giây (Xếp hàng tuần tự)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>2.3. Giải đáp Câu hỏi Phản biện</h3>
+
+        <div class="qa-box">
+            <h3>Câu hỏi 1: Tại sao ở Lần 1 (khi nhân đôi số lượng máy ảo VMS), số lượng VM thực tế được tạo ra vẫn không đổi và máy chủ lại báo cảnh báo (WARN)?</h3>
+            <p><strong>Trả lời:</strong> Do giới hạn năng lực phần cứng của máy chủ vật lý (Host). Máy chủ được cấu hình 8 lõi xử lý (<span class="code-inline">Host Cores = 8</span>), trong khi mỗi máy ảo yêu cầu 4 lõi (<span class="code-inline">VM Cores = 4</span>). Hệ thống chỉ khởi tạo tối đa được 2 máy ảo (VM 0 và VM 1). Các VM vượt quá dung lượng phần cứng bị từ chối cấp phát, đồng thời sinh log cảnh báo tài nguyên.</p>
+        </div>
+
+        <div class="qa-box">
+            <h3>Câu hỏi 2: So sánh sự khác biệt về bản chất vận hành và thời gian hoàn thành giữa <span class="code-inline">CloudletSchedulerTimeShared</span> (Lần 0/2) và <span class="code-inline">CloudletSchedulerSpaceShared</span> (Lần 3)?</h3>
+            <p><strong>Trả lời:</strong></p>
+            <ul>
+                <li><strong>Time-Shared (Mặc định):</strong> Chia sẻ thời gian xử lý CPU cho nhiều tác vụ song song qua các lát cắt thời gian, giúp tối ưu độ trễ cho tác vụ ngắn.</li>
+                <li><strong>Space-Shared (Lần 3):</strong> Tác vụ chiếm độc quyền lõi CPU; các tác vụ đến sau phải xếp hàng chờ tuần tự.</li>
+                <li><strong>Về thời gian:</strong> Với quy mô tác vụ nhỏ trong kịch bản thí nghiệm này, tổng thời gian hoàn thành ở Lần 3 đạt <strong>20.1 giây</strong> (tương đương Time-Shared) do tài nguyên phần cứng đáp ứng đủ, không xảy ra hiện tượng nghẽn hàng đợi kéo dài.</li>
+            </ul>
+        </div>
+
+        <div class="qa-box">
+            <h3>Câu hỏi 3: Ý nghĩa của các cảnh báo (WARN) xuất hiện trong mô phỏng là gì? Có làm sai lệch kết quả mô phỏng không?</h3>
+            <p><strong>Trả lời:</strong> Các dòng cảnh báo <span class="code-inline">Vm destroyed on Host...</span> xuất hiện do máy ảo chuyển sang trạng thái rảnh (idle) trong lúc chờ xử lý hàng đợi dưới cơ chế phân bổ tài nguyên, khiến hệ thống tự động thu hồi tài nguyên. Cảnh báo này <strong>hoàn toàn không làm sai lệch kết quả</strong> thời gian hoàn thành cuối cùng, mà phản ánh chính xác cơ chế tự động quản lý vòng đời tài nguyên của điện toán đám mây.</p>
+        </div>
+    </div>
 </body>
 </html>
