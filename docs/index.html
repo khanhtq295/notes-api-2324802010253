@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Báo Cáo Thực Hành: Ảo hóa, Container & Mô phỏng Trung tâm Dữ liệu - Nhóm D</title>
+    <title>Báo Cáo Thực Hành Điện Toán Đám Mây - Trần Quốc Khánh</title>
     <style>
         :root {
             --primary-color: #2563eb;
             --secondary-color: #1e40af;
+            --accent-color: #059669;
             --bg-color: #f8fafc;
             --card-bg: #ffffff;
             --text-color: #1e293b;
@@ -38,28 +39,25 @@
         }
         h2 {
             color: var(--secondary-color);
-            margin-top: 35px;
-            border-bottom: 1px solid var(--border-color);
+            margin-top: 40px;
+            border-bottom: 2px solid var(--border-color);
             padding-bottom: 8px;
             font-size: 20px;
         }
         h3 {
             color: #334155;
             font-size: 16px;
+            margin-top: 24px;
         }
-        .student-info {
+        .individual-info {
             background: #eff6ff;
             border-left: 4px solid var(--primary-color);
             padding: 20px;
             border-radius: 0 8px 8px 0;
             margin-bottom: 30px;
         }
-        .student-info p {
+        .individual-info p {
             margin: 6px 0;
-        }
-        .student-info ul {
-            margin: 6px 0;
-            padding-left: 20px;
         }
         table {
             width: 100%;
@@ -74,11 +72,15 @@
             border: 1px solid var(--border-color);
             padding: 12px 16px;
             text-align: left;
+            vertical-align: top;
         }
         th {
             background-color: var(--primary-color);
             color: white;
             font-weight: 600;
+        }
+        .part3-table th {
+            background-color: var(--accent-color);
         }
         tr:nth-child(even) {
             background-color: #f8fafc;
@@ -98,9 +100,15 @@
             border: 1px solid var(--border-color);
             border-left-width: 4px;
         }
+        .qa-box.part3 {
+            border-left-color: var(--accent-color);
+        }
         .qa-box h3 {
             margin-top: 0;
             color: var(--secondary-color);
+        }
+        .qa-box.part3 h3 {
+            color: #065f46;
         }
         .code-inline {
             background: #e2e8f0;
@@ -109,23 +117,39 @@
             font-family: monospace;
             font-size: 0.9em;
         }
+        .diagram-wrapper {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        .diagram-caption {
+            text-align: center;
+            font-size: 13px;
+            color: #64748b;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        .section-divider {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #cbd5e1, transparent);
+            margin: 45px 0;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Báo Cáo Thực Hành: Ảo hóa, Container & Mô phỏng Trung tâm Dữ liệu</h1>
+        <h1>Báo Cáo Thực Hành Điện Toán Đám Mây</h1>
 
-        <div class="student-info">
-            <h3>Thông tin nhóm thực hiện (Nhóm D)</h3>
-            <p><strong>Danh sách thành viên:</strong></p>
-            <ul>
-                <li>Huỳnh Đăng Khoa</li>
-                <li>Ngô Sỹ Minh Phước</li>
-                <li>Nguyễn Thanh Cung</li>
-                <li>Trần Quốc Khánh</li>
-            </ul>
-            <p><strong>Lớp/Học phần:</strong> Công nghệ thông tin - Trường Đại học Thủ Dầu Một</p>
+        <div class="individual-info">
+            <h3>Thông tin sinh viên thực hiện</h3>
+            <p><strong>Họ và tên:</strong> Trần Quốc Khánh</p>
+            <p><strong>Mã số sinh viên:</strong> 2324802010253</p>
+            <p><strong>Lớp:</strong> D23CNTT01 — Ngành Công nghệ thông tin, Trường Đại học Thủ Dầu Một</p>
             <p><strong>GitHub Repository:</strong> <a href="https://github.com/khanhtq295/notes-api-2324802010253" target="_blank">notes-api-2324802010253</a></p>
         </div>
 
@@ -199,7 +223,7 @@
             </tbody>
         </table>
 
-        <h3>2.3. Giải đáp Câu hỏi Phản biện</h3>
+        <h3>2.3. Giải đáp Câu hỏi Phản biện (Phần 2)</h3>
 
         <div class="qa-box">
             <h3>Câu hỏi 1: Tại sao ở Lần 1 (khi nhân đôi số lượng máy ảo VMS), số lượng VM thực tế được tạo ra vẫn không đổi và máy chủ lại báo cảnh báo (WARN)?</h3>
@@ -219,6 +243,196 @@
         <div class="qa-box">
             <h3>Câu hỏi 3: Ý nghĩa của các cảnh báo (WARN) xuất hiện trong mô phỏng là gì? Có làm sai lệch kết quả mô phỏng không?</h3>
             <p><strong>Trả lời:</strong> Các dòng cảnh báo <span class="code-inline">Vm destroyed on Host...</span> xuất hiện do máy ảo chuyển sang trạng thái rảnh (idle) trong lúc chờ xử lý hàng đợi dưới cơ chế phân bổ tài nguyên, khiến hệ thống tự động thu hồi tài nguyên. Cảnh báo này <strong>hoàn toàn không làm sai lệch kết quả</strong> thời gian hoàn thành cuối cùng, mà phản ánh chính xác cơ chế tự động quản lý vòng đời tài nguyên của điện toán đám mây.</p>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- PHẦN BÀI 3 -->
+        <h2>Phần 3: Lưu trữ Đám mây — Cơ sở dữ liệu NoSQL & Object Storage</h2>
+        <p><strong>Hạ tầng triển khai:</strong> MongoDB Atlas (Cluster0 - AWS Singapore) & Supabase Storage (Bucket <span class="code-inline">attachments</span>)</p>
+
+        <h3>3.1. Kết quả Thực nghiệm Hiệu năng Chỉ mục (MongoDB Index)</h3>
+        <p>Thử nghiệm trên tập dữ liệu gồm <strong>2.001 tài liệu</strong> (2.000 ghi chú mẫu từ <span class="code-inline">seed.js</span> và 1 ghi chú kiểm thử API) với truy vấn lọc theo nhãn <span class="code-inline">{ tags: 'docker' }</span> thông qua <span class="code-inline">explain('executionStats')</span>:</p>
+        <table class="part3-table">
+            <thead>
+                <tr>
+                    <th>Chiến lược truy vấn</th>
+                    <th>Số tài liệu đã duyệt (<span class="code-inline">docsExamined</span>)</th>
+                    <th>Số kết quả trả về (<span class="code-inline">returned</span>)</th>
+                    <th>Thời gian xử lý (<span class="code-inline">ms</span>)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Quét toàn bộ (<span class="code-inline">COLLSCAN</span>)</strong></td>
+                    <td><strong>2001</strong></td>
+                    <td>571</td>
+                    <td>1 ms</td>
+                </tr>
+                <tr>
+                    <td><strong>Dùng chỉ mục (<span class="code-inline">IXSCAN</span> trên <span class="code-inline">tags: 1</span>)</strong></td>
+                    <td><strong>571</strong></td>
+                    <td>571</td>
+                    <td>1 ms</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><strong>Nhận xét:</strong> Khi sử dụng chỉ mục B-Tree trên trường <span class="code-inline">tags</span>, hệ thống chỉ đọc đúng <strong>571</strong> tài liệu thỏa điều kiện (tỉ lệ duyệt/trả về đạt 1:1), giảm số lượng tài liệu phải quét đi <strong>~3,5 lần</strong> so với quét toàn bộ bộ sưu tập.</p>
+
+        <h3>3.2. Sơ đồ & So sánh Kiến trúc Nhân bản: MongoDB Atlas vs. HDFS</h3>
+        <div class="diagram-wrapper">
+            <svg viewBox="0 0 920 360" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="font-family: 'Segoe UI', sans-serif;">
+                <!-- Khung trái: MongoDB Atlas -->
+                <rect x="10" y="10" width="430" height="340" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+                <text x="225" y="38" text-anchor="middle" font-weight="bold" font-size="15" fill="#065f46">MONGODB ATLAS (Replica Set - 3 Nút)</text>
+
+                <!-- Client Atlas -->
+                <rect x="155" y="55" width="140" height="36" rx="6" fill="#ffffff" stroke="#059669" stroke-width="1.5"/>
+                <text x="225" y="78" text-anchor="middle" font-size="13" font-weight="600" fill="#1e293b">Notes API (Client)</text>
+
+                <!-- Mũi tên Client -> Primary -->
+                <line x1="225" y1="91" x2="225" y2="128" stroke="#059669" stroke-width="2"/>
+                <polygon points="225,134 220,124 230,124" fill="#059669"/>
+                <text x="278" y="114" font-size="11" fill="#065f46">Ghi / Đọc mặc định</text>
+
+                <!-- Primary Node -->
+                <rect x="135" y="135" width="180" height="48" rx="8" fill="#059669"/>
+                <text x="225" y="157" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">PRIMARY NODE</text>
+                <text x="225" y="173" text-anchor="middle" font-size="11" fill="#d1fae5">(Toàn bộ DB: notes)</text>
+
+                <!-- Mũi tên Oplog tới 2 Secondary -->
+                <line x1="180" y1="183" x2="125" y2="238" stroke="#0d9488" stroke-width="2" stroke-dasharray="4,3"/>
+                <polygon points="120,243 123,232 131,240" fill="#0d9488"/>
+                <text x="105" y="213" font-size="11" fill="#0f766e">Oplog Sync</text>
+
+                <line x1="270" y1="183" x2="325" y2="238" stroke="#0d9488" stroke-width="2" stroke-dasharray="4,3"/>
+                <polygon points="330,243 319,240 327,232" fill="#0d9488"/>
+                <text x="312" y="213" font-size="11" fill="#0f766e">Oplog Sync</text>
+
+                <!-- Secondary 1 -->
+                <rect x="35" y="245" width="170" height="52" rx="8" fill="#ffffff" stroke="#059669" stroke-width="1.5"/>
+                <text x="120" y="268" text-anchor="middle" font-size="12" font-weight="bold" fill="#065f46">SECONDARY 1</text>
+                <text x="120" y="285" text-anchor="middle" font-size="11" fill="#475569">(Bản sao đầy đủ DB)</text>
+
+                <!-- Secondary 2 -->
+                <rect x="245" y="245" width="170" height="52" rx="8" fill="#ffffff" stroke="#059669" stroke-width="1.5"/>
+                <text x="330" y="268" text-anchor="middle" font-size="12" font-weight="bold" fill="#065f46">SECONDARY 2</text>
+                <text x="330" y="285" text-anchor="middle" font-size="11" fill="#475569">(Bản sao đầy đủ DB)</text>
+
+                <text x="225" y="328" text-anchor="middle" font-size="11" fill="#065f46">Tự động bầu chọn Primary mới (Raft Quorum) khi gặp sự cố</text>
+
+                <!-- Khung phải: HDFS -->
+                <rect x="480" y="10" width="430" height="340" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+                <text x="695" y="38" text-anchor="middle" font-weight="bold" font-size="15" fill="#1e40af">HDFS (Hệ thống Tệp Phân tán - RF = 3)</text>
+
+                <!-- Client HDFS -->
+                <rect x="625" y="55" width="140" height="36" rx="6" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+                <text x="695" y="78" text-anchor="middle" font-size="13" font-weight="600" fill="#1e293b">HDFS Client</text>
+
+                <!-- Mũi tên Client -> NameNode & DataNode 1 -->
+                <line x1="650" y1="91" x2="585" y2="133" stroke="#2563eb" stroke-width="1.8"/>
+                <polygon points="580,136 586,127 591,135" fill="#2563eb"/>
+                <text x="555" y="114" font-size="11" fill="#1e40af">1. Hỏi Metadata</text>
+
+                <line x1="740" y1="91" x2="800" y2="133" stroke="#2563eb" stroke-width="1.8"/>
+                <polygon points="805,136 794,135 799,127" fill="#2563eb"/>
+                <text x="780" y="114" font-size="11" fill="#1e40af">2. Ghi Block (128MB)</text>
+
+                <!-- NameNode -->
+                <rect x="505" y="138" width="150" height="52" rx="8" fill="#1e40af"/>
+                <text x="580" y="161" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">NAMENODE</text>
+                <text x="580" y="177" text-anchor="middle" font-size="11" fill="#dbeafe">(Quản lý Siêu dữ liệu)</text>
+
+                <!-- DataNode 1 -->
+                <rect x="735" y="138" width="150" height="46" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+                <text x="810" y="159" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e40af">DATANODE 1</text>
+                <text x="810" y="175" text-anchor="middle" font-size="11" fill="#475569">[Block A]</text>
+
+                <!-- Pipeline 1 -> 2 -->
+                <line x1="810" y1="184" x2="810" y2="208" stroke="#2563eb" stroke-width="2"/>
+                <polygon points="810,213 805,204 815,204" fill="#2563eb"/>
+                <text x="852" y="202" font-size="10" fill="#1e40af">Pipeline</text>
+
+                <!-- DataNode 2 -->
+                <rect x="735" y="214" width="150" height="46" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+                <text x="810" y="235" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e40af">DATANODE 2</text>
+                <text x="810" y="251" text-anchor="middle" font-size="11" fill="#475569">[Block A]</text>
+
+                <!-- Pipeline 2 -> 3 -->
+                <line x1="810" y1="260" x2="810" y2="282" stroke="#2563eb" stroke-width="2"/>
+                <polygon points="810,287 805,278 815,278" fill="#2563eb"/>
+                <text x="852" y="277" font-size="10" fill="#1e40af">Pipeline</text>
+
+                <!-- DataNode 3 -->
+                <rect x="735" y="288" width="150" height="46" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+                <text x="810" y="309" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e40af">DATANODE 3</text>
+                <text x="810" y="325" text-anchor="middle" font-size="11" fill="#475569">[Block A]</text>
+
+                <text x="580" y="260" text-anchor="middle" font-size="11" fill="#1e40af">Tách biệt Metadata</text>
+                <text x="580" y="276" text-anchor="middle" font-size="11" fill="#1e40af">và lưu trữ khối vật lý</text>
+            </svg>
+            <div class="diagram-caption">Hình 3.1: So sánh cơ chế nhân bản 3 bản sao giữa MongoDB Atlas (Replica Set) và HDFS</div>
+        </div>
+
+        <table class="part3-table">
+            <thead>
+                <tr>
+                    <th>Tiêu chí so sánh</th>
+                    <th>MongoDB Atlas (Replica Set M0)</th>
+                    <th>HDFS (Hadoop Distributed File System)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Điểm giống nhau</strong></td>
+                    <td colspan="2">Đều duy trì mặc định <strong>3 bản sao dữ liệu</strong> trên các nút độc lập để đảm bảo tính sẵn sàng cao (High Availability) và khả năng chịu lỗi (Fault Tolerance) khi 1 nút gặp sự cố.</td>
+                </tr>
+                <tr>
+                    <td><strong>Đơn vị nhân bản</strong></td>
+                    <td>Nhân bản <strong>toàn bộ cơ sở dữ liệu / bản ghi</strong> (Logical Replication qua nhật ký thao tác <em>Oplog</em>). Mỗi nút giữ một bản sao đầy đủ dữ liệu.</td>
+                    <td>Chia tệp lớn thành các <strong>khối dữ liệu cố định (Blocks, mặc định 128 MB)</strong> và nhân bản từng khối vật lý lên 3 DataNode.</td>
+                </tr>
+                <tr>
+                    <td><strong>Kiến trúc điều phối</strong></td>
+                    <td>Mô hình <strong>Primary – Secondary</strong> ngang hàng; không tách nút metadata. Nếu Primary sập, các Secondary tự bỏ phiếu bầu Primary mới.</td>
+                    <td>Kiến trúc <strong>Master – Worker</strong> tách biệt rạch ròi nút quản lý siêu dữ liệu (<strong>NameNode</strong>) và các nút lưu dữ liệu (<strong>DataNode</strong>).</td>
+                </tr>
+                <tr>
+                    <td><strong>Cơ chế ghi dữ liệu</strong></td>
+                    <td>Ghi tập trung vào Primary, sau đó các Secondary đồng bộ bất đồng bộ từ Oplog.</td>
+                    <td>Ghi nối tiếp theo đường ống (<strong>Replication Pipeline</strong>) từ Client &rarr; DataNode 1 &rarr; DataNode 2 &rarr; DataNode 3.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>3.3. Giải đáp Câu hỏi Phản biện (Phần 3)</h3>
+
+        <div class="qa-box part3">
+            <h3>Câu hỏi 1: Từ bảng kết quả <span class="code-inline">explain</span>, hãy ước lượng sự khác biệt về số tài liệu phải duyệt khi bộ sưu tập có 2 triệu tài liệu, và phân tích hậu quả nếu thiếu chỉ mục dưới giới hạn 100 thao tác/giây của gói M0?</h3>
+            <p><strong>Trả lời:</strong></p>
+            <ul>
+                <li><strong>Ước lượng trên 2.000.000 tài liệu:</strong> Với 2.001 tài liệu thực tế, quét toàn bộ (<span class="code-inline">COLLSCAN</span>) phải duyệt toàn bộ <strong>2.001</strong> bản ghi trong khi dùng chỉ mục (<span class="code-inline">IXSCAN</span>) chỉ duyệt đúng <strong>571</strong> bản ghi khớp điều kiện (tỉ lệ giảm ~3,5 lần). Khi quy mô tăng lên <strong>2.000.000 tài liệu</strong> (gấp 1.000 lần), truy vấn không có chỉ mục sẽ buộc phải đọc tuần tự toàn bộ <strong>2.000.000 tài liệu</strong> trên mỗi lần gọi API, trong khi truy vấn có chỉ mục chỉ duyệt đúng số lượng tài liệu thỏa mãn bộ lọc thông qua cấu trúc cây B-Tree.</li>
+                <li><strong>Hậu quả dưới giới hạn 100 ops/giây của gói M0:</strong> Việc quét hàng triệu tài liệu cho mỗi yêu cầu sẽ nhanh chóng làm bão hòa IOPS đĩa, CPU và đẩy dữ liệu nóng ra khỏi bộ nhớ đệm RAM (Working Set). Thời gian phản hồi tăng vọt từ vài mili-giây lên hàng chục giây, gây nghẽn hàng đợi kết nối và phát sinh lỗi hết thời gian chờ (Timeout / HTTP 500–504) hàng loạt trên ứng dụng.</li>
+            </ul>
+        </div>
+
+        <div class="qa-box part3">
+            <h3>Câu hỏi 2: Tại sao ứng dụng không lưu trực tiếp nội dung tệp đính kèm vào tài liệu MongoDB mà phải lưu lên Supabase Storage và chỉ lưu đường dẫn <span class="code-inline">attachmentUrl</span>?</h3>
+            <p><strong>Trả lời:</strong></p>
+            <ul>
+                <li><strong>Giới hạn kích thước tài liệu BSON:</strong> MongoDB giới hạn dung lượng tối đa của mỗi tài liệu BSON là <strong>16 MB</strong>; lưu trực tiếp tệp nhị phân (hình ảnh, PDF, tài liệu lớn) sẽ dễ dàng vượt ngưỡng gây lỗi ghi dữ liệu.</li>
+                <li><strong>Bảo vệ hiệu năng bộ nhớ đệm (RAM):</strong> Cơ sở dữ liệu NoSQL ưu tiên giữ dữ liệu chỉ mục và tài liệu nóng trên RAM để truy vấn nhanh. Nhúng tệp nhị phân làm phình kích thước bản ghi, chiếm dụng RAM và làm chậm toàn bộ các truy vấn tìm kiếm/lọc văn bản.</li>
+                <li><strong>Tối ưu chi phí và băng thông truyền tải:</strong> Object Storage (Supabase Storage) được tối ưu chuyên biệt cho lưu trữ tệp tĩnh với chi phí thấp và hỗ trợ phân phối trực tiếp qua HTTP/CDN cho trình duyệt tải song song mà không làm quá tải máy chủ API Node.js.</li>
+            </ul>
+        </div>
+
+        <div class="qa-box part3">
+            <h3>Câu hỏi 3: Mục tiêu chung của con số 3 bản sao trong cả MongoDB Atlas và HDFS là gì? Đơn vị được nhân bản khác nhau như thế nào giữa hai hệ thống?</h3>
+            <p><strong>Trả lời:</strong></p>
+            <ul>
+                <li><strong>Mục tiêu chung của con số 3:</strong> Cân bằng tối ưu giữa <strong>khả năng chịu lỗi (Fault Tolerance)</strong> và <strong>chi phí lưu trữ</strong>, đồng thời đảm bảo số nút luôn là <strong>số lẻ (quorum = 2)</strong>. Khi 1 nút gặp sự cố, 2 nút còn lại vẫn đạt đa số phiếu để duy trì hoạt động liên tục và tránh tình trạng chia rẽ mạng (<em>split-brain</em>).</li>
+                <li><strong>Sự khác biệt về đơn vị nhân bản:</strong> MongoDB Atlas thực hiện <strong>nhân bản mức logic trên toàn bộ cơ sở dữ liệu</strong> (mỗi nút trong Replica Set lưu giữ một bản sao hoàn chỉnh của tất cả các collection thông qua nhật ký <em>Oplog</em>); ngược lại, HDFS thực hiện <strong>nhân bản mức khối vật lý của tệp</strong> (chia nhỏ từng tệp lớn thành các khối 128 MB độc lập và phân tán các bản sao của từng khối sang 3 DataNode khác nhau).</li>
+            </ul>
         </div>
 
     </div>
