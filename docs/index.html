@@ -59,6 +59,23 @@
         .individual-info p {
             margin: 6px 0;
         }
+        .similarity-box {
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            border-left: 4px solid var(--accent-color);
+            padding: 18px 22px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+        .similarity-box h4 {
+            margin: 0 0 10px 0;
+            color: #065f46;
+            font-size: 15px;
+        }
+        .similarity-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -374,33 +391,37 @@
             <div class="diagram-caption">Hình 3.1: So sánh cơ chế nhân bản 3 bản sao giữa MongoDB Atlas (Replica Set) và HDFS</div>
         </div>
 
+        <div class="similarity-box">
+            <h4>Điểm giống nhau giữa MongoDB Atlas và HDFS</h4>
+            <ul>
+                <li><strong>Hệ số nhân bản mặc định bằng 3:</strong> Cả hai hệ thống đều duy trì mặc định <strong>3 bản sao dữ liệu</strong> nằm trên các nút độc lập để đảm bảo tính sẵn sàng cao (<em>High Availability</em>) và khả năng chịu lỗi (<em>Fault Tolerance</em>) khi một nút gặp sự cố.</li>
+                <li><strong>Cơ chế phát hiện lỗi tự động:</strong> Cả hai đều sử dụng tín hiệu kiểm tra sức khỏe định kỳ (<em>heartbeat</em>) giữa các nút để kịp thời phát hiện nút chết và duy trì tính toàn vẹn dịch vụ.</li>
+            </ul>
+        </div>
+
         <table class="part3-table">
             <thead>
                 <tr>
-                    <th>Tiêu chí so sánh</th>
-                    <th>MongoDB Atlas (Replica Set M0)</th>
-                    <th>HDFS (Hadoop Distributed File System)</th>
+                    <th style="width: 18%;">Tiêu chí</th>
+                    <th style="width: 41%;">MongoDB Atlas (Replica Set M0)</th>
+                    <th style="width: 41%;">HDFS (Hadoop Distributed File System)</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><strong>Điểm giống nhau</strong></td>
-                    <td colspan="2">Đều duy trì mặc định <strong>3 bản sao dữ liệu</strong> trên các nút độc lập để đảm bảo tính sẵn sàng cao (High Availability) và khả năng chịu lỗi (Fault Tolerance) khi 1 nút gặp sự cố.</td>
-                </tr>
-                <tr>
                     <td><strong>Đơn vị nhân bản</strong></td>
-                    <td>Nhân bản <strong>toàn bộ cơ sở dữ liệu / bản ghi</strong> (Logical Replication qua nhật ký thao tác <em>Oplog</em>). Mỗi nút giữ một bản sao đầy đủ dữ liệu.</td>
-                    <td>Chia tệp lớn thành các <strong>khối dữ liệu cố định (Blocks, mặc định 128 MB)</strong> và nhân bản từng khối vật lý lên 3 DataNode.</td>
+                    <td>Nhân bản <strong>toàn bộ cơ sở dữ liệu / bản ghi</strong> (<em>Logical Replication</em> thông qua nhật ký thao tác <em>Oplog</em>). Mỗi nút trong cụm đều lưu giữ một bản sao đầy đủ của toàn bộ dữ liệu.</td>
+                    <td>Chia nhỏ từng tệp lớn thành các <strong>khối dữ liệu vật lý cố định (Blocks, mặc định 128 MB)</strong> và phân tán từng khối sang 3 DataNode khác nhau.</td>
                 </tr>
                 <tr>
                     <td><strong>Kiến trúc điều phối</strong></td>
-                    <td>Mô hình <strong>Primary – Secondary</strong> ngang hàng; không tách nút metadata. Nếu Primary sập, các Secondary tự bỏ phiếu bầu Primary mới.</td>
-                    <td>Kiến trúc <strong>Master – Worker</strong> tách biệt rạch ròi nút quản lý siêu dữ liệu (<strong>NameNode</strong>) và các nút lưu dữ liệu (<strong>DataNode</strong>).</td>
+                    <td>Mô hình <strong>Primary – Secondary</strong> ngang hàng, không tách biệt nút quản lý metadata. Nếu Primary gặp sự cố, các Secondary tự bỏ phiếu bầu chọn Primary mới qua thuật toán Raft.</td>
+                    <td>Kiến trúc <strong>Master – Worker</strong> tách biệt rạch ròi nút quản lý siêu dữ liệu (<strong>NameNode</strong>) với các nút lưu trữ dữ liệu thực tế (<strong>DataNode</strong>).</td>
                 </tr>
                 <tr>
                     <td><strong>Cơ chế ghi dữ liệu</strong></td>
-                    <td>Ghi tập trung vào Primary, sau đó các Secondary đồng bộ bất đồng bộ từ Oplog.</td>
-                    <td>Ghi nối tiếp theo đường ống (<strong>Replication Pipeline</strong>) từ Client &rarr; DataNode 1 &rarr; DataNode 2 &rarr; DataNode 3.</td>
+                    <td>Mọi thao tác ghi đều đi vào <strong>Primary</strong>, sau đó các <strong>Secondary</strong> sao chép bất đồng bộ từ nhật ký <em>Oplog</em>.</td>
+                    <td>Ghi nối tiếp theo đường ống (<strong>Replication Pipeline</strong>): Client ghi vào DataNode 1 &rarr; chuyển tiếp sang DataNode 2 &rarr; DataNode 3.</td>
                 </tr>
             </tbody>
         </table>
